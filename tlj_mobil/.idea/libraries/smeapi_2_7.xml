@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="smeapi_2_7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/smeapi_2_7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
