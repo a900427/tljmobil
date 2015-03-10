@@ -137,14 +137,22 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 
 					LoginVO loginVO = new LoginVO();
 
-					loginVO.setId(httpRequest.getParameter("id"));
-					loginVO.setPassword(password);
+					reqIdPw(httpRequest, password, loginVO);
 					loginVO.setUserSe(httpRequest.getParameter("userSe"));
 
 					try {
-
 						//사용자 입력 id, password로 DB 인증을 실행함
 						loginVO = loginService.actionLogin(loginVO);
+						if(loginVO.getId() == null){
+							loginVO.setUserSe("ENT");
+							reqIdPw(httpRequest, password, loginVO);
+							loginVO = loginService.actionLogin(loginVO);
+							if(loginVO.getId() == null){
+								loginVO.setUserSe("USR");
+								reqIdPw(httpRequest, password, loginVO);
+								loginVO = loginService.actionLogin(loginVO);
+							}
+						}
 
 						if (loginVO != null && loginVO.getId() != null && !loginVO.getId().equals("")) {
 							//세션 로그인
@@ -201,6 +209,17 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 		}
 
 		chain.doFilter(request, response);
+	}
+
+	
+	/**
+	 * 작성자 : 송희윤
+	 * 작성일 : 2015.03.10
+	 * 설명   : request id,password 중복제거.
+	 */
+	private void reqIdPw(HttpServletRequest httpRequest, String password, LoginVO loginVO) {
+		loginVO.setId(httpRequest.getParameter("id"));
+		loginVO.setPassword(password);
 	}
 
 	public void init(FilterConfig filterConfig) throws ServletException {

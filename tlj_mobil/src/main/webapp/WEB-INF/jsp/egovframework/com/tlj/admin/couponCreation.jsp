@@ -4,6 +4,18 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<c:if test="${sessionScope.loginVO ne null}">
+	<c:if test="${sessionScope.loginVO.userSe ne 'USR'}">
+	<script>
+	window.onload = function(){
+		alert("접근권한이 없습니다. 메인화면으로 이동됩니다.");
+		location.href = "/index.do";	
+	}
+	</script>
+	</c:if>
+</c:if>
+
 <html lang="ko">
 <head>
     <meta charset="utf-8">
