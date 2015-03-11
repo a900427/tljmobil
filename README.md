@@ -1,5 +1,5 @@
 # tljmobil
 URL : http://tljmobil.freehost.co.kr
 
-#tljmobil model ftp
+tljmobil database model
 ftp://tljmobil.freehost.co.kr/ERwin
