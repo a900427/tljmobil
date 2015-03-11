@@ -2,4 +2,4 @@
 URL : http://tljmobil.freehost.co.kr
 
 ##tljmobil database ddl download
-ftp://tljmobil.freehost.co.kr/ERwin
+URL : ftp://tljmobil.freehost.co.kr/ERwin
