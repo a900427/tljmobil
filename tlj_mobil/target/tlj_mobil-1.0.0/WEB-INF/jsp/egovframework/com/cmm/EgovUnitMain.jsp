@@ -32,7 +32,7 @@
 
 <body id="page-top" class="index">
 
-    <!-- Navigation -->
+	<!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -43,34 +43,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">화곡2동점 출/퇴근 시스템</a>
+                <a class="navbar-brand" href="http://tljmobil.freehost.co.kr">화곡2동점 모바일 홈페이지</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#">프로필</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#portfolio">출근도장찍기</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">설명</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="<c:url value='/couponCreation.do'/>">영수증발급</a>
-                    </li>
-                    
-                </ul>
-            </div>
+    			<jsp:include page="../../../../common/top.jsp"></jsp:include>        
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
+	
 
     <!-- Header -->
     <header>
@@ -133,11 +115,9 @@
                         <img src="startbootstrap/img/portfolio/calculator.png" class="img-responsive" alt="" style="margin:0 auto 0 auto;width:360px;height:268px;">
                     </a>
                 </div>
-            </div>
-        </div>
+            </div>            
+        </div> 
     </section>
-    
-    
 
     <!-- About Section -->
     <section class="success" id="about">
@@ -322,36 +302,17 @@
         </div>
     </div>
 
-	<%------------ 부트스트랩에서 로드시키는 리소스 (시작) ------------%>
-    <%-- jQuery --%>
-    <script src="startbootstrap/js/jquery.js"></script>
-    <%-- Bootstrap Core JavaScript --%>
-    <script src="startbootstrap/js/bootstrap.min.js"></script>
-    <%-- Plugin JavaScript --%>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="startbootstrap/js/classie.js"></script>
-    <script src="startbootstrap/js/cbpAnimatedHeader.js"></script>
-    <%-- Contact Form JavaScript --%>
-    <script src="startbootstrap/js/jqBootstrapValidation.js"></script>
-    <script src="startbootstrap/js/contact_me.js"></script>
-    <%-- Custom Theme JavaScript --%>
-    <script src="startbootstrap/js/freelancer.js"></script>
-    <%-- 검색어 자동완성 --%>  
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-	<%------------ 부트스트랩에서 로드시키는 리소스 (종료) ------------%>
-
-	<%-- 카카오톡 js라이브러리 --%>
-	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
 	<script>
 	$(document).ready(function(){
 		 var autocomplete_text = ["생크림케이크1호","생크림케이크2호","생크림케이크3호","생크림케이크4호","생크림케이크5호","러브블루베리케이크"];
          $("#tt").autocomplete({
             source: autocomplete_text
          });
+         var elem = $('iframe').contents().find('cj_onecard_box');
+         elem.detach();
+         $("#portfolio").append(elem);
 	});
-	
+
 	// 사용할 앱의 Javascript 키를 설정해 주세요.
     Kakao.init('d65ad45d82df670220ebfa16fad367dd');
     function sendLink() {
@@ -394,6 +355,7 @@
         window.open(fullUrl,"","width="+ pWidth +",height="+ pHeight +",left="+ pLeft +",top="+ pTop +",location=no,menubar=no,status=no,scrollbars=no,resizable=no,titlebar=no,toolbar=no");
          
     }
+    
 	</script>
 </body>
 

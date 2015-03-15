@@ -1,5 +1,7 @@
 package egovframework.com.sec.ram.service;
 
+import java.util.ArrayList;
+
 
 public interface EgovProductManageService {
 
@@ -8,4 +10,6 @@ public interface EgovProductManageService {
 	ProductOderVO productBarcodeSelect(ProductOderVO productOderVO) throws Exception;
 
 	StoreDataVO storeDataSelect() throws Exception;
+
+	ArrayList<ProductListVO> productListSelect() throws Exception;
 }

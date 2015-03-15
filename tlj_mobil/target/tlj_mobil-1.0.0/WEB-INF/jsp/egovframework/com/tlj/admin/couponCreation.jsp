@@ -5,13 +5,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<c:if test="${sessionScope.loginVO.userSe ne 'USR'}">
-<script>
-window.onload = function(){
-	alert("접근권한이 없습니다. 메인화면으로 이동됩니다.");
-	location.href = "/tlj_mobil/index.do";	
-}
-</script>
+<c:if test="${sessionScope.loginVO ne null}">
+	<c:if test="${sessionScope.loginVO.userSe ne 'USR'}">
+	<script>
+	window.onload = function(){
+		alert("접근권한이 없습니다. 메인화면으로 이동됩니다.");
+		$("#cForm").attr("action","index.do");
+		$("#cForm").submit();	
+	};
+	</script>
+	</c:if>
 </c:if>
 
 <html lang="ko">
@@ -57,23 +60,11 @@ window.onload = function(){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">화곡2동점 모바일 영수증발급</a>
+                <a class="navbar-brand" href="http://tljmobil.freehost.co.kr">화곡2동점 모바일 영수증발급</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">로그인</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">메인페이지</a>
-                    </li>
-                </ul>
-            </div>
+    			<jsp:include page="../../../../../common/top.jsp"></jsp:include>        
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
@@ -83,9 +74,9 @@ window.onload = function(){
     <header>
   
     </header>
-
+	
     <!-- Contact Section -->
-    <form id="cForm" name="cForm" action="/tlj_mobil/index.do" method="post"> 
+    <form id="cForm" name="cForm" action="/index.do" method="post"> 
     <section id="contact">
         <div class="container">
             <div class="row">
@@ -205,45 +196,24 @@ window.onload = function(){
         </a>
     </div>
 
-    <!-- jQuery -->
-    <script src="startbootstrap/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="startbootstrap/js/bootstrap.min.js"></script>
-    <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="startbootstrap/js/classie.js"></script>
-    <script src="startbootstrap/js/cbpAnimatedHeader.js"></script>
-    <!-- Contact Form JavaScript -->
-    <script src="startbootstrap/js/jqBootstrapValidation.js"></script>
-    <%-- 가격 콤마표시 라이브러리 --%>
-    <script src="startbootstrap/js/jquery.number.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="startbootstrap/js/freelancer.js"></script>
-	<%-- 검색어 자동완성 --%>  
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-     
-	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-   <!--  <a id="kakao-link-btn" href="javascript:sendLink()">
-      <img src="http://dn.api1.kage.kakao.co.kr/14/dn/btqa9B90G1b/GESkkYjKCwJdYOkLvIBKZ0/o.jpg" />
-   </a> -->
-	
 	<script>
 	$(document).ready(function(){
 		$("#submitBtn").click(function(){
 			$("#cForm").submit();
 		});
-		var autocomplete_text = ["생크림케이크1호","생크림케이크2호","생크림케이크3호","생크림케이크4호","생크림케이크5호","러브블루베리케이크"];
+		<%-- 품목인풋 자동완성 --%>
+		var autocomplete_text = [${productList}];
         $("#PROD_PROPRIETARY_NAME").autocomplete({
            source: autocomplete_text
         });
+        <%-- 품목가격 , 표시 --%>
        	$("#PROD_PROPRIETARY_PRICE").number( true );
 	});
 	// 사용할 앱의 Javascript 키를 설정해 주세요.
     Kakao.init('d65ad45d82df670220ebfa16fad367dd');
     function sendLink() {
         Kakao.Link.sendTalkLink({
-          label: '[뚜레쥬르 화곡2동점]\n안녕하세요,강서구 화곡2동점\n출|퇴근 시스템입니다.',
+          label: '[뚜레쥬르 화곡2동점]\n안녕하세요,강서구 화곡2동점\n모바일홈페이지입니다.',
           image: {
         	  src : 'http://img.seoul.co.kr/img/upload/2010/12/09/SSI_20101209185619_V.jpg',
         	  /* src : 'http://cfile25.uf.tistory.com/image/1932C31C4D014C891AFE06', 뚜레쥬르 BI*/
@@ -253,18 +223,10 @@ window.onload = function(){
           },
           webLink: {
         	  text: '모바일 페이지로 이동하기',
-        	  url: 'http://192.168.219.6:8080/tlj_salary_calculator/indextest.do'
+        	  url: 'http://tljmobil.freehost.co.kr'
           }
         });
     };
-    function set_comma(n) {
-        var reg = /(^[+-]?\d+)(\d{3})/;
-        n += '';
-        while (reg.test(n))
-         n = n.replace(reg, '$1' + ',' + '$2');
-  
-        return n;
-    }
 	</script>
 </body>
 

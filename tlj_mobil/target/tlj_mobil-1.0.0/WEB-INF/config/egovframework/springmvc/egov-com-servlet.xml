@@ -32,6 +32,7 @@
 			<mvc:exclude-mapping path="/index.do" />
 			<mvc:exclude-mapping path="/TljJoin.do" />
 			<mvc:exclude-mapping path="/couponsel.do" />
+			<mvc:exclude-mapping path="/membership.do" />
             <mvc:exclude-mapping path="/uat/uia/**" />
             <mvc:exclude-mapping path="/EgovLeft.do" />
             <mvc:exclude-mapping path="/EgovContent.do" />

@@ -1,5 +1,7 @@
 package egovframework.com.sec.ram.web;
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import egovframework.com.cmm.SessionVO;
 import egovframework.com.sec.ram.service.EgovProductManageService;
+import egovframework.com.sec.ram.service.ProductListVO;
 import egovframework.com.sec.ram.service.ProductOderVO;
 import egovframework.com.sec.ram.service.StoreDataVO;
 
@@ -82,7 +85,40 @@ public class EgovProductManageController {
 	 */
 	@RequestMapping("/couponCreation.do")
 	public String couponCreation(ModelMap model) {
+		String product_name = "";
+		try {
+			ArrayList<ProductListVO> productList = egovProductManageService.productListSelect();
+			for (ProductListVO productListVO : productList) {
+				product_name += "'"+productListVO.getPROD_NAME()+"',";
+			}
+			model.addAttribute("productList",product_name);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "egovframework/com/tlj/admin/couponCreation";
 	}
+	
+	/**
+	 * 작성자 : 송희윤
+	 * 작성일 : 2014.03.14
+	 * 설명   : 영수증확인 페이지로 이동.
+	 */
+	@RequestMapping("/couponCheck.do")
+	public String couponCheck(ModelMap model) {
+		return "egovframework/com/tlj/admin/couponCheck";
+	}
+	
+	/**
+	 * 작성자 : 송희윤
+	 * 작성일 : 2014.02.06
+	 * 설명   : 뚜레쥬르 공식홈페이지 이벤트&멤버십 안내페이지로 이동 [iframe]
+	 */
+	@RequestMapping("/membership.do")
+	public String membership(ModelMap model) {
+		return "egovframework/com/tlj/official/membership";
+	}
+	
+	
 	
 }

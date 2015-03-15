@@ -23,6 +23,7 @@
 	<security:http pattern="/index.do" 			 		 	 security="none"/>
 	<security:http pattern="/TljJoin.do" 	 				 security="none"/>
 	<security:http pattern="/couponsel.do" 	 				 security="none"/>
+	<security:http pattern="/membership.do" 				 security="none"/>
  	<security:http pattern="\A/WEB-INF/jsp/.*\Z" request-matcher="regex" security="none"/>
  	
     <egov-security:config id="securityConfig"

@@ -1,10 +1,13 @@
 package egovframework.com.sec.ram.service.impl;
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import egovframework.com.sec.ram.service.EgovProductManageService;
+import egovframework.com.sec.ram.service.ProductListVO;
 import egovframework.com.sec.ram.service.ProductOderVO;
 import egovframework.com.sec.ram.service.StoreDataVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
@@ -31,6 +34,11 @@ public class EgovProductManageServiceImpl extends EgovAbstractServiceImpl implem
 	@Override
 	public StoreDataVO storeDataSelect() throws Exception {
 		return egovProductManageDAO.storeDataSelect();
+	}
+
+	@Override
+	public ArrayList<ProductListVO> productListSelect() throws Exception {
+		return egovProductManageDAO.productListSelect();
 	}
 
 }

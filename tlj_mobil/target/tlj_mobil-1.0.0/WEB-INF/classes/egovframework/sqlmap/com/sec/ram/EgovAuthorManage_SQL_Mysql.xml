@@ -8,6 +8,7 @@
     <typeAlias  alias="AuthorManage" type="egovframework.com.sec.ram.service.AuthorManage"/>
     <typeAlias  alias="ProductOderVO" type="egovframework.com.sec.ram.service.ProductOderVO"/>
     <typeAlias  alias="StoreDataVO" type="egovframework.com.sec.ram.service.StoreDataVO"/>
+    <typeAlias  alias="ProductListVO" type="egovframework.com.sec.ram.service.ProductListVO"/>
 
     <resultMap id="author" class="egovframework.com.sec.ram.service.AuthorManageVO">
         <result property="authorCode" column="AUTHOR_CODE" columnIndex="1"/>
@@ -36,6 +37,10 @@
         <result property="STORE_MAP_POINT" column="STORE_MAP_POINT" />
         <result property="STORE_URL" column="STORE_URL" />
     </resultMap>
+    
+    <resultMap id="ProductListVO" class="egovframework.com.sec.ram.service.ProductListVO">
+        <result property="PROD_NAME" column="PROD_NAME" />
+    </resultMap>
 
 	<select id="egovProductManageDAO.egovProductBarcodeSelect" parameterClass="ProductOderVO" resultMap="ProductOderVO_1">
             SELECT
@@ -61,6 +66,10 @@
 		        STORE_MAP_POINT,
 		        STORE_URL
             FROM STOREDATA
+    </select>
+
+    <select id="egovProductManageDAO.egovProductListSelect" resultMap="ProductListVO">
+            SELECT PROD_NAME FROM PRODUCT_LIST
     </select>
 
 	 <insert id="egovProductManageDAO.egovProductInsert">
